@@ -26,12 +26,12 @@
             ],
             "styles": [
               "src/styles.css",
-              "assets/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "assets/js/popper.min.js",
-              "assets/js/bootstrap.min.js",
-              "assets/js/bootstrap.bundle.min.js"
+              
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
