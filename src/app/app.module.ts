@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DetalleComponent } from './clientes/detalle/detalle.component';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(localeEs);
 
@@ -25,6 +26,7 @@ export const routes: Routes = [
   {path: 'clientes/page/:page', component: ClientesComponent},
   {path: 'clientes/form', component: FormComponent},
   {path: 'clientes/form/:id', component: FormComponent},
+  {path: 'login', component: LoginComponent}
 
 
 
@@ -39,7 +41,8 @@ export const routes: Routes = [
     ClientesComponent,
     FormComponent,
     PaginatorComponent,
-    DetalleComponent
+    DetalleComponent,
+    LoginComponent
     
   ],
   imports: [

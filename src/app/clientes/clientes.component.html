@@ -9,32 +9,35 @@
         <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">Crear Cliente</button>
     </div>
 
-    <div *ngIf="clientes?.length == 0" class="alert alert-info">
-        No hay rtegistros en la base de datos.
+    <div *ngIf="clientes?.length == 0" class="alert alert-info ">
+        No hay registros en la base de datos.
         </div>
 
         <table class="table table-bordered" *ngIf="clientes?.length>0">
             <thead>
-                <th>id</th>
-                <th>nombre</th>
-                <th>apellido</th>
-                <th>email</th>
-                <th>fecha</th>
-                <th>
+                <tr class=" table-bordered">
+                <th class="text">#</th>
+                <th class="text">nombre</th>
+                <th class="text">apellido</th>
+                <th class="text">email</th>
+                <th class="text">fecha</th>
+                <th class="text">
                     Editar
                 </th>
-                <th>
+                <th class="text">
                     Eliminar
                 </th>
+
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes" [ngClass]="{'fila-par': isIdPar(cliente.id)}">
                     <td><img (click)="abrirModal(cliente)"*ngIf="cliente?.foto" 
-                    src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded"
+                    src="http://localhost:8080/api/imagenes/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded"
                     style="width: 64px; cursor: pointer;">
                     
                     <img (click)="abrirModal(cliente)"*ngIf="!cliente?.foto" 
-                    src="http://localhost:8080/images/icon_not_user.png" alt="sin foto" class="img-thumbnail rounded"
+                    src="http://localhost:8080/images/block-user.png" alt="sin foto" class="img-thumbnail rounded"
                     style="width: 64px; cursor: pointer;"></td>
                     <td>{{cliente.nombre}}</td>
                     <td>{{cliente.apellido | uppercase}}</td>

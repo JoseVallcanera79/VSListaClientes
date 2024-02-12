@@ -19,6 +19,10 @@
                     <li class="list-group-item">{{cliente.apellido}}</li>
                     <li class="list-group-item">{{cliente.email}}</li>
                     <li class="list-group-item">{{cliente.createAt | date:"fullDate"}}</li>
+                    <li class="list-group-item">{{cliente.region.nombre}}</li>
+
+                    
+
 
                 </ul> 
                 
@@ -37,9 +41,12 @@
                   
                   
               </div>
-              <div class="col-sm">
+              <div class="col-sm d-flex justify-content-center aling-items-center">
 
-                <img *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded">
+                <img *ngIf="cliente?.foto" src="http://localhost:8080/api/imagenes/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded">
+                <img *ngIf="!cliente?.foto" src="http://localhost:8080/images/block-user.png" alt="sin foto" class="img-thumbnail rounded">
+
+                
 
               </div>  
 

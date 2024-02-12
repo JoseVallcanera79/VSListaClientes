@@ -1,8 +1,8 @@
 <ul class="alert alert-danger" *ngIf="errores?.length > 0">
-    <li *ngFor="let err of errores"> 
-          {{err}}
+    <li *ngFor="let err of errores">
+        {{err}}
     </li>
-  
+
 </ul>
 <div class="card bg-dark text-white">
     <div class="card-header">{{ titulo }}</div>
@@ -12,13 +12,14 @@
             <div class="form-group row">
                 <label for="nombre" class="col-form-label col-sm-2 mb-3">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre"  #nombre="ngModel"> <!--required minlength="4"-->
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required="nombre" minlength="4" #nombre="ngModel"> 
+                    <!--required minlength="4"-->
                     <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                         <div *ngIf="nombre.errors.required">
-                             El nombre es requerido
+                            El nombre es requerido
                         </div>
                         <div *ngIf="nombre.errors.minlength">
-                             El nombre debe tener al menos 4 caracteres
+                            El nombre debe tener al menos 4 caracteres
                         </div>
                     </div>
                 </div>
@@ -29,14 +30,14 @@
             <div class="form-group row">
                 <label for="apellido" class="col-form-label col-sm-2 mb-3">Apellido</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido"  #apellido="ngModel"> <!--required minlength="4"-->
+                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" required="apellido" #apellido="ngModel">
                     <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
                         <div *ngIf="apellido.errors.required">
                             El apellido es requerido
-                       </div>
-                       <div *ngIf="apellido.errors.minlength">
+                        </div>
+                        <div *ngIf="apellido.errors.minlength">
                             El apellido debe tener al menos 4 caracteres
-                       </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,38 +48,61 @@
             <div class="form-group row">
                 <label for="email" class="col-form-label col-sm-2 mb-3">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email"  #email="ngModel"> <!--required email-->
+                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email" required
+                        email="email" #email="ngModel">
+
                     <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
                         <div *ngIf="email.errors.required">
                             El email es requerido
-                       </div>
-                       <div *ngIf="email.errors.email">
+                        </div>
+                        <div *ngIf="email.errors.email">
                             El email debe tener un formato válido
-                       </div>
-                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="createAt" class="col-form-label col-sm-2 mb-3">Fecha</label>
                 <div class="col-sm-6">
-                    <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt"> <!--required minlength="4"-->
-                
+                    <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" required
+                        createAt="createAt" #createAt="ngModel">
+                    <div class="alert alert-danger" *ngIf="createAt.invalid && (createAt.dirty || createAt.touched)">
+                        <div *ngIf="createAt.errors.required">
+                            La fecha es requerida
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="region" class="col-form-label col-sm-2 mb-3">Región</label>
+                <div class="col-sm-6">
+                    <select [compareWith]="compararRegion" class="form-control" [(ngModel)]="cliente.region"
+                        name="region" required="region">
+                        <option [ngValue]="undefined">---Seleccionar una región---</option>
+                        <option *ngFor="let region of regiones" [ngValue]="region">{{region.nombre}}</option>
+
+                    </select>
                 </div>
             </div>
 
 
 
 
-            <div class="form-group" >
-                <button type="submit" class="btn btn-primary " style="width: 30%; margin-left: 35%;"  role="button" 
-                (click)="create()" *ngIf="!cliente.id else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary " style="width: 30%; margin-left: 35%;" role="button"
+                    (click)="create()" *ngIf="!cliente.id else elseBlock"
+                    [disabled]="!clienteForm.form.valid">Crear</button>
 
                 <ng-template #elseBlock>
-                    <button type="submit" class="btn btn-primary " style="width: 30%; margin-left: 35%;"  role="button" 
-                    (click)="update()" [disabled]="!clienteForm.form.valid">Editar</button>
+                    <button type="submit" class="btn btn-primary " style="width: 30%; margin-left: 35%;" role="button"
+                        (click)="update()" [disabled]="!clienteForm.form.valid">Editar</button>
                 </ng-template>
-                
+
             </div>
 
 

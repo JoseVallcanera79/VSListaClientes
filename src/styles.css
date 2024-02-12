@@ -13,3 +13,8 @@ body{
 .wrap{
     padding-bottom: 60px;
 }
+
+.pagination {
+    position: sticky; /* o position: sticky; */
+    bottom: 10px; /* Ajusta la posición según tus necesidades */
+}

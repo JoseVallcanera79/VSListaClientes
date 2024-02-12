@@ -4,4 +4,11 @@
     color: white;
    
   }
+
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
   
+  .text{
+    color: rgb(0, 153, 255);
+  }
