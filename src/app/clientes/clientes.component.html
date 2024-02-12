@@ -1,30 +1,60 @@
-<div class="cliente card border-primary mb-3" >
+
+<detalle-cliente *ngIf="clienteSeleccionado"[cliente] = "clienteSeleccionado"></detalle-cliente>
+
+<div class="cliente card border-primary mb-3">
     <div class="card-header">Clientes</div>
     <div class="card-body text-primary">
         <h5 class="card-title">Lista de clientes</h5>
     <div class="my-2 text-left">
         <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">Crear Cliente</button>
     </div>
-        <table class="table table-bordered table-striped">
+
+    <div *ngIf="clientes?.length == 0" class="alert alert-info">
+        No hay rtegistros en la base de datos.
+        </div>
+
+        <table class="table table-bordered" *ngIf="clientes?.length>0">
             <thead>
                 <th>id</th>
                 <th>nombre</th>
                 <th>apellido</th>
                 <th>email</th>
                 <th>fecha</th>
+                <th>
+                    Editar
+                </th>
+                <th>
+                    Eliminar
+                </th>
             </thead>
             <tbody>
-                <tr *ngFor="let cliente of clientes">
-                    <td>{{cliente.id}}</td>
+                <tr *ngFor="let cliente of clientes" [ngClass]="{'fila-par': isIdPar(cliente.id)}">
+                    <td><img (click)="abrirModal(cliente)"*ngIf="cliente?.foto" 
+                    src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded"
+                    style="width: 64px; cursor: pointer;">
+                    
+                    <img (click)="abrirModal(cliente)"*ngIf="!cliente?.foto" 
+                    src="http://localhost:8080/images/icon_not_user.png" alt="sin foto" class="img-thumbnail rounded"
+                    style="width: 64px; cursor: pointer;"></td>
                     <td>{{cliente.nombre}}</td>
-                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.apellido | uppercase}}</td>
                     <td>{{cliente.email}}</td>
-                    <td>{{cliente.createAt}}</td>
+                    <td>{{cliente.createAt | date: 'EEEE dd, MMMM yyyy'}}</td>
+                    <td>
+                        <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]"
+                         class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                        <button type="button" name="eliminar"  (click)= 'delete(cliente)'
+                         class="btn btn-danger">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
 
 
         </table>
+
+        <paginator-nav *ngIf = "paginador" [paginador] = "paginador"></paginator-nav>
 
     </div>
 </div>
